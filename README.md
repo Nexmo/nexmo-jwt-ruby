@@ -43,7 +43,7 @@ claims = {
 
 private_key = File.read('path/to/private.key')
 
-token = NexmoJWT::Generator.generate(claims, private_key)
+token = NexmoJwt::Generator.generate(claims, private_key)
 ````
 
 ## Documentation
