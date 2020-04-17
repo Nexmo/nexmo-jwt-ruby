@@ -30,7 +30,7 @@ Alternatively you can clone the repository:
 ## Usage
 
 By default the Nexmo JWT generator creates a short lived JWT (15 minutes) per request.
-To generate a long lived JWT for multiple requests, specify a longer value in the `iat`
+To generate a long lived JWT for multiple requests, specify a longer value in the `exp`
 parameter in the `claims` object.
 
 ```ruby

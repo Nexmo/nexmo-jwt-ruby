@@ -8,7 +8,7 @@ module NexmoJwt
     #
     # By default the Nexmo JWT generator creates a short lived (15 minutes) JWT per request.
     #
-    # To generate a long lived JWT for multiple requests, specify a longer value in the `iat`
+    # To generate a long lived JWT for multiple requests, specify a longer value in the `exp`
     # parameter in the `claims` object. 
     #
     # @example
