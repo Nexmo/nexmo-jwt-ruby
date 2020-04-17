@@ -1,9 +1,12 @@
+# typed: strict
 require 'securerandom'
 require 'openssl'
 require 'jwt'
 
 module NexmoJwt
   class Generator
+    extend T::Sig
+
     # Generate an encoded JSON Web Token.
     #
     # By default the Nexmo JWT generator creates a short lived (15 minutes) JWT per request.
@@ -28,9 +31,18 @@ module NexmoJwt
     #
     # @return [String]
     #
+    sig {params(
+      payload: {
+        "application_id" => T.nilable(String),
+        "iat" => T.nilable(Integer),
+        "exp" => T.nilable(Integer),
+        "jti" => T.nilable(String)
+      },
+      private_key: OpenSSL::PKey::RSA
+    ).returns(String)}
     def self.generate(payload, private_key)
       payload[:iat] = iat = Time.now.to_i unless payload.key?(:iat) || payload.key?('iat')
-      payload[:exp] = iat + 60 unless payload.key?(:exp) || payload.key?('exp')
+      payload[:exp] = T.must(iat) + 60 unless payload.key?(:exp) || payload.key?('exp')
       payload[:jti] = SecureRandom.uuid unless payload.key?(:jti) || payload.key?('jti')
 
       private_key = OpenSSL::PKey::RSA.new(private_key) unless private_key.respond_to?(:sign)

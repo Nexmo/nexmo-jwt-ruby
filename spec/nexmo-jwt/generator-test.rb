@@ -1,3 +1,4 @@
+# typed: ignore
 require_relative './test'
 require_relative '../../lib/nexmo-jwt/generator'
 

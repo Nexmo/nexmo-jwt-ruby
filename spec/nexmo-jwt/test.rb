@@ -1,4 +1,4 @@
-# typed: false
+# typed: ignore
 require 'simplecov'
 
 SimpleCov.start do
