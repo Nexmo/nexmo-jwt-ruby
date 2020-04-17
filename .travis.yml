@@ -1,0 +1,10 @@
+dist: xenial
+language: ruby
+cache: bundler
+bundler_args: --without development
+rvm:
+  - 2.5
+  - 2.6
+  - 2.7
+script:
+  - bundle exec rake test_with_coveralls
