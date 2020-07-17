@@ -1,6 +1,6 @@
 # Nexmo JWT Generator for Ruby
 
-[![Gem Version](https://badge.fury.io/rb/nexmo-jwt.svg)](https://badge.fury.io/rb/nexmo-jwt) [![Build Status](https://api.travis-ci.org/Nexmo/nexmo-jwt-ruby.svg?branch=master)](https://travis-ci.org/Nexmo/nexmo-jwt-ruby) [![Coverage Status](https://coveralls.io/repos/github/Nexmo/nexmo-jwt-ruby/badge.svg?branch=coveralls)](https://coveralls.io/github/Nexmo/nexmo-jwt-ruby?branch=master)[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+[![Gem Version](https://badge.fury.io/rb/nexmo-jwt.svg)](https://badge.fury.io/rb/nexmo-jwt)![Coverage Status](https://github.com/nexmo/nexmo-jwt-ruby/workflows/CI/badge.svg)[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 <img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
 
