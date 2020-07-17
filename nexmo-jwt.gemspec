@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
     'source_code_uri' => 'https://github.com/Nexmo/nexmo-jwt-ruby',
     'bug_tracker_uri' => 'https://github.com/Nexmo/nexmo-jwt-ruby/issues',
     'changelog_uri' => 'https://github.com/Nexmo/nexmo-jwt-ruby/blob/master/CHANGES.md',
-    'documentation_uri' => 'https://www.rubydoc.info/github/nexmo/nexmo-jwt'
+    'documentation_uri' => 'https://rubydoc.info/github/Nexmo/nexmo-jwt-ruby'
   }
 end
