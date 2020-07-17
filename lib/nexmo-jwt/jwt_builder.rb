@@ -42,18 +42,26 @@ module Nexmo
     attr_accessor :application_id, :private_key, :jti, :nbf, :ttl, :exp, :alg, :paths, :subject, :jwt
 
     def initialize(params = {})
+      Nexmo::JWTBuilder.validate_parameters_not_conflicting(params)
+
       @application_id = set_application_id(params.fetch(:application_id))
       @private_key = set_private_key(params.fetch(:private_key))
       @jti = params.fetch(:jti, SecureRandom.uuid)
       @nbf = params.fetch(:nbf, nil)
       @ttl = params.fetch(:ttl, 900)
-      @exp = params.fetch(:exp, 0)
+      @exp = params.fetch(:exp, nil)
       @alg = params.fetch(:alg, 'RS256')
       @paths = params.fetch(:paths, nil)
       @subject = params.fetch(:subject, 'Subject')
       @jwt = Nexmo::JWT.new(:generator => self)
 
       after_initialize!(self)
+    end
+
+    def self.validate_parameters_not_conflicting(params)
+      if params[:ttl] && params[:exp]
+        raise ArgumentError, "Expected either 'ttl' or 'exp' parameter, preference is to set 'ttl' parameter"
+      end
     end
 
     def after_initialize!(builder)

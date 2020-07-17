@@ -86,6 +86,36 @@ describe Nexmo::JWTBuilder do
     end
   end
 
+  context 'with exp parameter provided in custom configuration block' do
+    before :each do
+      @builder = Nexmo::JWTBuilder.new(
+        application_id: '123456789',
+        private_key: './spec/nexmo-jwt/private_key.txt',
+        exp: 600
+      )
+    end
+
+    it 'includes the custom defined exp parameter in the builder' do
+      expect(@builder.exp).to eql(600)
+    end
+  end
+
+  context 'without exp parameter provided in configuration block' do
+    before :each do
+      @builder = Nexmo::JWTBuilder.new(application_id: '123456789', private_key: './spec/nexmo-jwt/private_key.txt')
+    end
+
+    it 'sets exp parameter to equal nil' do
+      expect(@builder.exp).to eql(nil)
+    end
+
+    it 'sets exp parameter in JWT class to equal the value of the ttl and iat parameters added together' do
+      @builder.jwt.iat = 1595222754
+      hash = @builder.jwt.to_payload
+      expect(hash[:exp]).to eql(1595222754 + 900)
+    end
+   end
+
   context 'with incorrect data types for custom configuration block' do
     it 'raises an ArgumentError if nbf parameter is not an Integer' do
       expect {
@@ -153,6 +183,19 @@ describe Nexmo::JWTBuilder do
       expect {
         builder = Nexmo::JWTBuilder.new(application_id: '123456789')
       }.to raise_error(KeyError, "key not found: :private_key")
+    end
+  end
+
+  context 'with conflicting parameters' do
+    it 'raises a custom exception if ttl and exp params both provided' do
+      expect {
+        builder = Nexmo::JWTBuilder.new(
+          application_id: '123456789',
+          private_key: './spec/nexmo-jwt/private_key.txt',
+          ttl: 500,
+          exp: 600
+        )
+      }.to raise_error(ArgumentError, "Expected either 'ttl' or 'exp' parameter, preference is to set 'ttl' parameter")
     end
   end
 end
