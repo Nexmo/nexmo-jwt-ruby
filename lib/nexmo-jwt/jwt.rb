@@ -18,7 +18,7 @@ module Nexmo
       hash = {
         iat: iat,
         jti: generator.jti,
-        exp: generator.exp + generator.ttl,
+        exp: generator.exp || iat + generator.ttl,
         sub: generator.subject,
         application_id: generator.application_id,
         typ: typ
