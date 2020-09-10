@@ -68,7 +68,7 @@ Example providing custom configuration options:
 
 Nexmo Ruby JWT documentation: https://www.rubydoc.info/github/nexmo/nexmo-jwt
 
-Nexmo Ruby code examples: https://github.com/Nexmo/nexmo-ruby-code-snippets
+Nexmo Ruby code examples: https://github.com/Vonage/vonage-ruby-code-snippets
 
 Nexmo API reference: https://developer.nexmo.com/api
 
