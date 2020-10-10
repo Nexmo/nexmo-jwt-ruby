@@ -24,7 +24,7 @@ describe Nexmo::JWTBuilder do
       expect(@builder.private_key).to be_an_instance_of(OpenSSL::PKey::RSA)
     end
 
-    it 'generates a JWT string with the data provided' do      
+    it 'generates a JWT string with the data provided' do
       expect(@decoded_token['application_id']).to eql('123456789')
     end
 
@@ -47,7 +47,7 @@ describe Nexmo::JWTBuilder do
                 'filters' => {
                   'from' => '447977271009'
                 }
-              } 
+              }
             }
           }
         }
@@ -81,7 +81,8 @@ describe Nexmo::JWTBuilder do
     end
 
     it 'generates a JWT string with the data provided' do
-      expect(@decoded_token['paths']).to eql("acl"=>{"paths"=>{"/messages"=>{"methods"=>["POST", "GET"], "filters"=>{"from"=>"447977271009"}}}})
+      expect(@decoded_token['path']).to be_nil
+      expect(@decoded_token['acl']).to eql("paths"=>{"/messages"=>{"methods"=>["POST", "GET"], "filters"=>{"from"=>"447977271009"}}})
       expect(@decoded_token['sub']).to eql('ExampleApp')
     end
   end
@@ -120,7 +121,7 @@ describe Nexmo::JWTBuilder do
     it 'raises an ArgumentError if nbf parameter is not an Integer' do
       expect {
         builder = Nexmo::JWTBuilder.new(
-          application_id: '123456789', 
+          application_id: '123456789',
           private_key: './spec/nexmo-jwt/private_key.txt',
           nbf: '123'
         )
@@ -130,7 +131,7 @@ describe Nexmo::JWTBuilder do
     it 'raises an ArgumentError if ttl parameter is not an Integer' do
       expect {
         builder = Nexmo::JWTBuilder.new(
-          application_id: '123456789', 
+          application_id: '123456789',
           private_key: './spec/nexmo-jwt/private_key.txt',
           ttl: '300'
         )
@@ -140,7 +141,7 @@ describe Nexmo::JWTBuilder do
     it 'raises an ArgumentError if acl_paths parameter is not a Hash' do
       expect {
         builder = Nexmo::JWTBuilder.new(
-          application_id: '123456789', 
+          application_id: '123456789',
           private_key: './spec/nexmo-jwt/private_key.txt',
           paths: ['not', 'a', 'hash']
         )
@@ -150,7 +151,7 @@ describe Nexmo::JWTBuilder do
     it 'raises an ArgumentError if sub parameter is not a String' do
       expect {
         builder = Nexmo::JWTBuilder.new(
-          application_id: '123456789', 
+          application_id: '123456789',
           private_key: './spec/nexmo-jwt/private_key.txt',
           subject: 123
         )
