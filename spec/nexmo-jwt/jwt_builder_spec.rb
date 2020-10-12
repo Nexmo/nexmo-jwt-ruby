@@ -85,6 +85,23 @@ describe Nexmo::JWTBuilder do
       expect(@decoded_token['acl']).to eql("paths"=>{"/messages"=>{"methods"=>["POST", "GET"], "filters"=>{"from"=>"447977271009"}}})
       expect(@decoded_token['sub']).to eql('ExampleApp')
     end
+
+    it 'generates a JWT with proper formation' do
+      expect(@decoded_token).to match(
+        hash_including(
+          {
+            "sub"=>"ExampleApp",
+            "application_id"=>"123456789",
+            "typ"=>"JWT",
+            "acl"=> { "paths" => { "/messages" => { "methods" => ["POST", "GET"], "filters"=> {"from" => "447977271009" } } } }
+          }
+        )
+      )
+    end
+
+    it 'generates a JWT without path key' do
+      expect(@decoded_token.keys).not_to include("path")
+    end
   end
 
   context 'with exp parameter provided in custom configuration block' do
