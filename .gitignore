@@ -3,6 +3,3 @@ Gemfile.lock
 coverage
 doc
 *.gem
-.bundle
-vendor
-.idea

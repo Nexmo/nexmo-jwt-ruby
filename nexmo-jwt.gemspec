@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require File.expand_path('lib/nexmo_jwt/version', File.dirname(__FILE__))
+require File.expand_path('lib/nexmo-jwt/version', File.dirname(__FILE__))
 
 Gem::Specification.new do |s|
   s.name = 'nexmo-jwt'
@@ -12,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/Nexmo/nexmo-jwt-ruby'
   s.description = 'Nexmo JWT Generator for Ruby'
   s.summary = 'This is the Ruby client library to generate Nexmo JSON Web Tokens (JWTs).'
-  s.files = Dir.glob('lib/**/*.rb') + %w[LICENSE.txt README.md nexmo-jwt.gemspec]
+  s.files = Dir.glob('lib/**/*.rb') + %w(LICENSE.txt README.md nexmo-jwt.gemspec)
   s.required_ruby_version = '>= 2.5.0'
   s.add_dependency('jwt', '~> 2')
   s.require_path = 'lib'
