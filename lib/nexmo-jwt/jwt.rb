@@ -23,7 +23,7 @@ module Nexmo
         application_id: generator.application_id,
         typ: typ
       }
-      hash.merge!(paths: generator.paths) if generator.paths
+      hash.merge!(generator.paths) if generator.paths
       hash.merge!(nbf: generator.nbf) if generator.nbf
       hash
     end
