@@ -81,7 +81,7 @@ describe Nexmo::JWTBuilder do
     end
 
     it 'generates a JWT string with the data provided' do
-      expect(@decoded_token['path']).to be_nil
+      expect(@decoded_token['paths']).to be_nil
       expect(@decoded_token['acl']).to eql("paths"=>{"/messages"=>{"methods"=>["POST", "GET"], "filters"=>{"from"=>"447977271009"}}})
       expect(@decoded_token['sub']).to eql('ExampleApp')
     end
