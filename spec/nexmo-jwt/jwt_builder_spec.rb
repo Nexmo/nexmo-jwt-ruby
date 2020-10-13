@@ -100,7 +100,7 @@ describe Nexmo::JWTBuilder do
     end
 
     it 'generates a JWT without path key' do
-      expect(@decoded_token.keys).not_to include("path")
+      expect(@decoded_token.keys).not_to include("paths")
     end
   end
 
