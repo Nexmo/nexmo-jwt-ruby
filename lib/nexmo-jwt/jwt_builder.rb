@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'openssl'
 require 'securerandom'
 require_relative 'jwt'
@@ -9,7 +11,7 @@ module Nexmo
     # By default the Nexmo JWT generator creates a short lived (15 minutes) JWT per request.
     #
     # To generate a long lived JWT for multiple requests, specify a longer value in the `exp`
-    # parameter during initialization. 
+    # parameter during initialization.
     #
     # Example with no custom configuration:
     #
@@ -53,15 +55,15 @@ module Nexmo
       @alg = params.fetch(:alg, 'RS256')
       @paths = params.fetch(:paths, nil)
       @subject = params.fetch(:subject, 'Subject')
-      @jwt = Nexmo::JWT.new(:generator => self)
+      @jwt = Nexmo::JWT.new(generator: self)
 
       after_initialize!(self)
     end
 
     def self.validate_parameters_not_conflicting(params)
-      if params[:ttl] && params[:exp]
-        raise ArgumentError, "Expected either 'ttl' or 'exp' parameter, preference is to set 'ttl' parameter"
-      end
+      return unless params[:ttl] && params[:exp]
+
+      raise ArgumentError, "Expected either 'ttl' or 'exp' parameter, preference is to set 'ttl' parameter"
     end
 
     def after_initialize!(builder)
@@ -81,12 +83,10 @@ module Nexmo
       validate_private_key(private_key)
 
       if File.exist?(private_key)
-        key = OpenSSL::PKey::RSA.new(File.read(private_key))
+        OpenSSL::PKey::RSA.new(File.read(private_key))
       else
-        key = OpenSSL::PKey::RSA.new(private_key)
+        OpenSSL::PKey::RSA.new(private_key)
       end
-
-      key
     end
 
     def set_exp
