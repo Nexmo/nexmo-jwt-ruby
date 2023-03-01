@@ -4,6 +4,9 @@
 
 <img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
 
+|<p align="left">:exclamation: This SDK and Ruby gem have moved! It is now [`vonage-jwt`](https://rubygems.org/gems/vonage-jwt), located at [vonage/vonage-jwt-ruby](https://github.com/Vonage/vonage-jwt-ruby).</p>   |
+|-----------------------------------------|
+
 This is the Ruby library to generate Nexmo JSON Web Tokens (JWTs). To use it you'll
 need a Nexmo account. Sign up [for free at nexmo.com][signup].
 
